@@ -6,7 +6,7 @@ const TaskSchema = new mongoose.Schema({
     estimatedTime: { type: String },
     category: { type: String },
     priority: { type: String }
-}, { timestamps: true})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Task', TaskSchema)
 
