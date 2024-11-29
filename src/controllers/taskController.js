@@ -13,4 +13,14 @@ const createTask = async (req, res) => {
     }
 }
 
-module.exports = { createTask }
+const getAllTasks = async (req, res) => {
+    try {
+        const tasks = await Task.find()
+        res.status(200).json(tasks)
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send('Server error')
+    }
+}
+
+module.exports = { createTask, getAllTasks }
