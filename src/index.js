@@ -1,5 +1,4 @@
 const express = require('express')
-const cors = require('cors')
 const connectDB = require('./config/db')
 require('dotenv').config()
 
@@ -13,5 +12,5 @@ app.use(express.json())
 app.use('/api/tasks', require('./routes/taskRoutes'))
 
 app.listen(PORT, () => {
-    console.log(`server listening on port: ${PORT}`)
+    console.log(`Server listening on port: ${PORT}`)
 })
