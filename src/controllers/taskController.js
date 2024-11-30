@@ -28,7 +28,7 @@ const getTask = async (req, res) => {
     try {
       const task = await Task.findById(task_id)
       if (!task) {
-        return res.status(404).json({ message: 'Task not found'})
+        return res.status(404).json({ message: 'Task not found' })
       }
       res.status(200).json(task)
     } catch (error) {
@@ -60,4 +60,19 @@ const updateTask = async (req, res) => {
     }
   }
 
-module.exports = { createTask, getAllTasks, updateTask, getTask }
+const deleteTask = async (req, res) => {
+const { task_id } = req.params
+
+try {
+    const deletedTask = await Task.findByIdAndDelete(task_id)
+    if (!deletedTask) {
+    return res.status(404).json({ message: 'Task not found' })
+    }
+    res.status(200).json(deletedTask)
+} catch (error) {
+    console.error(error.message)
+    res.status(500).send('Server error')
+}
+}
+
+module.exports = { createTask, getAllTasks, updateTask, getTask, deleteTask }
