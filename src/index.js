@@ -14,6 +14,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/tasks', require('./routes/taskRoutes'))
+app.use('/api/auth', require('./routes/authRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/protected', require('./routes/protectedRoutes'))
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
