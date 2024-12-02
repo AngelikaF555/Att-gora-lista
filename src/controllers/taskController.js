@@ -84,9 +84,7 @@ try {
 const API_URL = 'http://localhost:5001/api/tasks/'
 
 const btnToGetTask = async (req, res) => {
-    console.log('trying to get post')
     const searchId = req.body.id
-    console.log('searchID: ' + searchId)
     try {
       const response = await axios.get(API_URL + searchId)
       const result = response.data
@@ -134,6 +132,7 @@ const btnToCreateTask = async (req, res) => {
 }
 
 const btnToUpdateTask = async (req, res) => {
+    const searchId = req.body.id
     const title = req.body.title
     const status = req.body.status
     const estimatedTime = req.body.estimatedTime
