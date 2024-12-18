@@ -39,10 +39,10 @@ Byt ut `<port>` med den port som servern körs på.
 2. Hämta en uppgift: GET `/tasks/{id}`
     - Byt ut `{id}` mot uppgiftens ID.
 3. Uppdatera en uppgift: PUT `/tasks/{id}`
-    - Skicka ett JSON-objekt som vid skapandet av uppgiften.
+    - Skicka ett JSON-objekt så som vid skapandet av uppgiften.
 4. Ta bort en uppgift: DELETE `/tasks/{id}`
 5. Skapa en ny användare: POST `/users`
-    - Skicka ett JSON-objekt i request body med namn och lösenord. Exempel:
+    - Skicka ett JSON-objekt i request body med användarnamn och lösenord. Exempel:
       ```json
       {
           "name": "ditt namn",
@@ -51,6 +51,7 @@ Byt ut `<port>` med den port som servern körs på.
       ```
 6. Logga in: POST `/auth/login`
     - Du kommer att vara auktoriserad i en timme.
+    - Skicka ett JSON-objekt med användarnamn och lösenord (se ovan).
 7. Hämta alla uppgifter: POST `/protected/get-tasks`
     - **OBS! Du måste vara inloggad för att använda denna funktion.**
     - **OBS! Efter att du skapat en ny användare måste du logga in; du blir inte automatiskt inloggad.**
