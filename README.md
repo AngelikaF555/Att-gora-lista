@@ -35,19 +35,18 @@ Byt ut `<port>` med den port som servern körs på.
     "priority": "high"
     }
     ```
-    - Endast titeln på uppgiften är obligatorisk.
+    - Endast titeln på uppgiften är obligatorisk. Statusen på uppgiften kommer då definieras automatisk så som "not done".
 2. Hämta en uppgift: GET `/tasks/{id}`
     - Byt ut `{id}` mot uppgiftens ID.
 3. Uppdatera en uppgift: PUT `/tasks/{id}`
     - Skicka ett JSON-objekt som vid skapandet av uppgiften.
 4. Ta bort en uppgift: DELETE `/tasks/{id}`
-    - Byt ut `{id}` mot uppgiftens ID.
 5. Skapa en ny användare: POST `/users`
     - Skicka ett JSON-objekt i request body med namn och lösenord. Exempel:
       ```json
       {
-          "name": "mitt namn",
-          "password": "mitt lösenord"
+          "name": "ditt namn",
+          "password": "ditt lösenord"
       }
       ```
 6. Logga in: POST `/auth/login`
@@ -58,9 +57,9 @@ Byt ut `<port>` med den port som servern körs på.
 
 ### Hur du använder webbsidan
 
-Skapa en ny användare genom att fylla ut textfälten för namn och lösenord och sedan tryck på knappen "sign up". Gå sedan tillbaka till inloggnings sidan.
+Skapa en ny användare genom att fylla ut textfälten för namn och lösenord och tryck på knappen "sign up". Gå sedan tillbaka till inloggnings sidan.
 
-Logga in genom att fylla ut textfälten för namn och lösenord, tryck sedan på knappen "sing in". Det kommer föra dig vidare till en sida där du kan skapa, hämta, uppdatatera och radera uppgifter. Du kommer vara auktoriserad i en timme.
+Logga in genom att fylla ut textfälten för namn och lösenord, tryck på knappen "sing in". Du kommer föras till en sida där du kan skapa, hämta, uppdatera och radera uppgifter. Du kommer vara auktoriserad i en timme.
 
 **För att:**
 1. Skapa en uppgift genom att fylla i titel, status, uppskattad tid, kategori och prioritet. Endast titel är obligatorisk. Tryck på "POST"-knappen.
