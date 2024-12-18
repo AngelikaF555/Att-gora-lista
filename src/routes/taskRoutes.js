@@ -1,15 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const { 
-    createTask, getAllTasks, getTask, updateTask, deleteTask, btnToGetTask, 
+    createTask,
+    getTask,
+    updateTask,
+    deleteTask,
+    btnToGetTask, 
     btnToCreateTask,
     btnToDeleteTask,
     btnToUpdateTask
 } = require('../controllers/taskController')
 
 router.post('/', createTask)
-
-router.get('/', getAllTasks)
 
 router.get('/:task_id', getTask)
 
