@@ -25,7 +25,16 @@ Bas URL: `localhost:<port>/api`.
 Byt ut `<port>` med den port som servern körs på.
 
 1. Skapa en uppgift: POST `/tasks`
-    - Skicka ett JSON-objekt i request body som anger "title", "status", "estimatedTime", "category" och "priority".
+    - Skicka ett JSON-objekt i request body som anger "title", "status", "estimatedTime", "category" och "priority". Exempel:
+    ```json
+    {
+    "title": "Read ch 1",
+    "status": "not done",
+    "estimatedTime": "1h",
+    "category": "reading",
+    "priority": "high"
+    }
+    ```
     - Endast titeln på uppgiften är obligatorisk.
 2. Hämta en uppgift: GET `/tasks/{id}`
     - Byt ut `{id}` mot uppgiftens ID.
