@@ -8,7 +8,8 @@ const {
     btnToGetTask, 
     btnToCreateTask,
     btnToDeleteTask,
-    btnToUpdateTask
+    btnToPUTTask,
+    btnToPATCHTask
 } = require('../controllers/taskController')
 
 router.post('/', createTask)
@@ -27,6 +28,8 @@ router.post('/delete-task', btnToDeleteTask)
 
 router.post('/create-task', btnToCreateTask)
 
-router.post('/update-task', btnToUpdateTask)
+router.post('/put-task', btnToPUTTask)
+
+router.post('/patch-task', btnToPATCHTask)
 
 module.exports = router

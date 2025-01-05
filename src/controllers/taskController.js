@@ -1,6 +1,7 @@
 const axios = require('axios')
 const bodyParser = require('body-parser')
 const Task = require('../models/Task')
+const { getUpdatedData } = require('./formController')
 
 const createTask = async (req, res) => {
     const { title, status, estimatedTime, category, priority } = req.body
@@ -114,7 +115,7 @@ const btnToCreateTask = async (req, res) => {
   }
 }
 
-const btnToUpdateTask = async (req, res) => {
+const btnToPUTTask = async (req, res) => {
     const searchId = req.body.id
     const title = req.body.title
     const status = req.body.status
@@ -123,7 +124,7 @@ const btnToUpdateTask = async (req, res) => {
     const priority = req.body.priority
 
     try {
-        const respons = await axios.put(API_URL + searchId, {
+        const respons = await axios.post(API_URL + searchId, {
             title: title,
             status: status,
             estimatedTime: estimatedTime,
@@ -141,4 +142,32 @@ const btnToUpdateTask = async (req, res) => {
       }
 }
 
-module.exports = { createTask, updateTask, getTask, deleteTask, btnToGetTask, btnToCreateTask, btnToDeleteTask, btnToUpdateTask }
+const btnToPATCHTask = async (req, res) => {
+  const updatedData = getUpdatedData(req.body)
+
+  try {
+    console.log('ID som skickas:', req.body.id)
+    console.log('Data som skickas:', updatedData)
+
+    const response = await axios.patch(`${API_URL}${req.body.id}`, updatedData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    res.status(200).json({ message: 'Resurs uppdaterad', result: response.data })
+  } catch (error) {
+    console.error('Ett fel uppstod:', error.message)
+
+    if (error.response) {
+      res.status(error.response.status).json({
+        message: 'Ett fel från servern uppstod',
+        error: error.response.data,
+      })
+    } else {
+      res.status(500).json({ message: 'Ett serverfel uppstod', error: error.message })
+    }
+  }
+}
+
+module.exports = { createTask, updateTask, getTask, deleteTask, btnToGetTask, btnToCreateTask, btnToDeleteTask, btnToPUTTask, btnToPATCHTask }
