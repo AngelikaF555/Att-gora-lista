@@ -1,17 +1,19 @@
 const User = require('../models/User')
 const path = require('path')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 const login = async (req, res) => {
     const { username, password } = req.body
 
     try {
-        const user = await User.findOne({ username })
+        const user = await User.findOne({ username }).exec()
         if (!user) {
             return res.status(401).json({ message: 'User not found' })
         }
 
-        if (password !== user.password) {
+        const isPasswordMatching = bcrypt.compareSync(password, user.password)
+        if (!isPasswordMatching) {
             return res.status(401).json({ message: 'Invalid credentials' })
         }
 
