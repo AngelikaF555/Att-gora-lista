@@ -5,15 +5,28 @@ const { getUpdatedData } = require('./formController')
 
 const createTask = async (req, res) => {
     const { title, status, estimatedTime, category, priority } = req.body
-    
+    const createdByUser = req.user.id
     try {
-        const newTask = new Task({ title, status, estimatedTime, category, priority })
+        const newTask = new Task({ createdByUser, title, status, estimatedTime, category, priority })
         const task = await newTask.save()
         res.status(201).json(task)
     } catch (error) {
         console.error(error.message)
         res.status(500).send('Server error')
     }
+}
+
+const getTasks = async (req, res) => {
+try {
+    const tasks = await Task.find()
+    res.status(200).json(tasks)
+
+  } catch (error) {
+    console.error('Error in protected route:', error)
+    res.status(500).json({ 
+      error: 'Failed to fetch tasks from the database.'
+    })
+  }
 }
 
 const getTask = async (req, res) => {
@@ -170,4 +183,4 @@ const btnToPATCHTask = async (req, res) => {
   }
 }
 
-module.exports = { createTask, updateTask, getTask, deleteTask, btnToGetTask, btnToCreateTask, btnToDeleteTask, btnToPUTTask, btnToPATCHTask }
+module.exports = { createTask, getTasks, updateTask, getTask, deleteTask, btnToGetTask, btnToCreateTask, btnToDeleteTask, btnToPUTTask, btnToPATCHTask }
